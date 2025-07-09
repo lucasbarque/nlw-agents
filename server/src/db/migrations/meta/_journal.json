@@ -8,6 +8,13 @@
       "when": 1752026151444,
       "tag": "0000_oval_princess_powerful",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1752063562643,
+      "tag": "0001_fixed_energizer",
+      "breakpoints": true
     }
   ]
 }
