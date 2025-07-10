@@ -12,7 +12,7 @@ export async function transcribeAudio(audioAsBase64: string, mimeType: string) {
     model,
     contents: [
       {
-        text: 'Transcreva o áudio para o português do Brasil. Seja preciso e natural na transcrição. Mantenha a pontuação adequada e divida o texto em parágrafos quando apropriado.',
+        text: 'Transcreva o áudio para português do Brasil. Seja preciso e natural na transcrição. Mantenha a pontuação adequada e divida o texto em parágrafos quando for apropriado.',
       },
       {
         inlineData: {
@@ -24,7 +24,7 @@ export async function transcribeAudio(audioAsBase64: string, mimeType: string) {
   });
 
   if (!response.text) {
-    throw new Error('Failed to transcribe audio');
+    throw new Error('Não foi possível converter o áudio');
   }
 
   return response.text;
@@ -40,7 +40,7 @@ export async function generateEmbeddings(text: string) {
   });
 
   if (!response.embeddings?.[0].values) {
-    throw new Error('Failed to generate embeddings');
+    throw new Error('Não foi possível gerar os embeddings.');
   }
 
   return response.embeddings[0].values;
@@ -63,11 +63,11 @@ export async function generateAnswer(
 
     INSTRUÇÕES:
     - Use apenas informações contidas no contexto enviado;
-    - Se a resposta não for encontrada no contexto, apenas responde que não possui informações suficientes para responder;
+    - Se a resposta não for encontrada no contexto, apenas responda que não possui informações suficientes para responder;
     - Seja objetivo;
     - Mantenha um tom educativo e profissional;
     - Cite trechos relevantes do contexto se apropriado;
-    - Se for citar o contexto, utilize o termo "conteúdo da aula"
+    - Se for citar o contexto, utilize o temo "conteúdo da aula";
   `.trim();
 
   const response = await gemini.models.generateContent({
@@ -80,7 +80,7 @@ export async function generateAnswer(
   });
 
   if (!response.text) {
-    throw new Error('Failed to generate answer');
+    throw new Error('Falha ao gerar resposta pelo Gemini');
   }
 
   return response.text;
